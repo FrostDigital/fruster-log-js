@@ -115,7 +115,7 @@ class FrusterLogger extends winston.Logger {
             humanReadableUnhandledException: true,
             handleExceptions: true,
             json: false,
-            colorize: true,
+            colorize: "all",
             prettyPrint: true,
             timestamp: () => this._getTimestamp()
         });
@@ -132,6 +132,27 @@ class FrusterLogger extends winston.Logger {
         return `[${timeZonedDate.format("YYYY-MM-DD hh:mm:ss")}]`;
     }
 
+    /**
+     * Audit log.    
+     *  
+     * @param {String} userId 
+     * @param {String} msg 
+     * @param {any=} payload 
+     */
+    audit(userId, msg, payload) {
+        //  Will be overridden in `_attachRemoteLogs()` but kept 
+        // here to make intellisense work.
+    }
+
+    /**
+     * Remote log.     
+     * 
+     * @param {any=} args 
+     */
+    remote() {
+        //  Will be overridden in `_attachRemoteLogs()` but kept 
+        // here to make intellisense work.
+    }
 }
 
 FrusterLogger.AUDIT_LOG_SUBJECT = "log.audit";
