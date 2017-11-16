@@ -19,7 +19,7 @@ class FrusterLogger extends winston.Logger {
         this.logLevel = logLevel;
         this.timestampTimezone = timestampTimezone;
         this.remoteLogLevel = remoteLogLevel;
-        this._configureConsoleLogging();        
+        this._configureConsoleLogging();
         this._attachRemoteLogs();
     }
 
@@ -33,18 +33,18 @@ class FrusterLogger extends winston.Logger {
     _attachRemoteLogs() {
         const tresholdLevel = constants.levels[this.remoteLogLevel];
         let levelsToAttach = [];
-                
+
         if (tresholdLevel !== undefined /* it can be 0, hence undefined check */) {
             // get all log levels from and "above" remote log level
             levelsToAttach = Object.keys(constants.levels)
-                .filter(levelName => constants.levels[levelName] <= tresholdLevel);            
+                .filter(levelName => constants.levels[levelName] <= tresholdLevel);
         }
-        
+
         // remote and audit log always log to remote no matter of config
         if (!levelsToAttach.includes(LOG_LEVEL_REMOTE_NAME)) {
             levelsToAttach.push(LOG_LEVEL_REMOTE_NAME);
         }
-        
+
         if (!levelsToAttach.includes(LOG_LEVEL_AUDIT_NAME)) {
             levelsToAttach.push(LOG_LEVEL_AUDIT_NAME);
         }
@@ -55,7 +55,7 @@ class FrusterLogger extends winston.Logger {
             if (level === LOG_LEVEL_AUDIT_NAME) {
                 this[level] = (userId, msg, payload) => {
                     superLog(`[${userId}] ${msg}`);
-                    
+
                     this._publishOnBus(FrusterLogger.AUDIT_LOG_SUBJECT, {
                         userId, msg, payload
                     });
@@ -63,11 +63,11 @@ class FrusterLogger extends winston.Logger {
             } else {
                 this[level] = (...msg) => {
                     superLog(...msg);
-                    
+
                     this._publishOnBus(FrusterLogger.REMOTE_LOG_SUBJECT, {
                         level, msg
                     });
-                }; 
+                };
             }
         });
     }
@@ -127,7 +127,7 @@ class FrusterLogger extends winston.Logger {
      * Function that returns timestamp used for console log.
      * Note that timestamp is not used for remote syslog.
      */
-    _getTimestamp()  {
+    _getTimestamp() {
         const timeZonedDate = moment(new Date()).tz(this.timestampTimezone);
         return `[${timeZonedDate.format("YYYY-MM-DD hh:mm:ss")}]`;
     }
@@ -140,7 +140,7 @@ class FrusterLogger extends winston.Logger {
      * @param {any=} payload 
      */
     audit(userId, msg, payload) {
-        //  Will be overridden in `_attachRemoteLogs()` but kept 
+        // Will be overridden in `_attachRemoteLogs()` but kept 
         // here to make intellisense work.
     }
 
@@ -150,7 +150,7 @@ class FrusterLogger extends winston.Logger {
      * @param {any=} args 
      */
     remote() {
-        //  Will be overridden in `_attachRemoteLogs()` but kept 
+        // Will be overridden in `_attachRemoteLogs()` but kept 
         // here to make intellisense work.
     }
 }
