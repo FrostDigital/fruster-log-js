@@ -18,8 +18,8 @@
   },
   "license": "ISC",
   "dependencies": {
-    "fruster-bus": "0.2.x",
-    "fruster-test-utils": "^0.3.17",
+    "fruster-bus": "0.7.x",
+    "fruster-test-utils": "^0.5.0",
     "moment": "^2.18.1",
     "moment-timezone": "^0.5.13",
     "uuid": "^3.1.0",
