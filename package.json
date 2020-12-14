@@ -4,6 +4,7 @@
   "description": "Logger for Fruster (micro) services",
   "main": "index.js",
   "private": false,
+  "types": "fruster-log.d.ts",
   "scripts": {
     "test": "node ./spec/support/jasmine-runner.js"
   },
