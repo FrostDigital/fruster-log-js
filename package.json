@@ -16,10 +16,8 @@
     "type": "git",
     "url": "git+https://github.com/FrostDigital/fruster-log-js.git"
   },
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
-    "fruster-bus": "0.7.x",
-    "fruster-test-utils": "^0.5.0",
     "moment": "^2.18.1",
     "moment-timezone": "^0.5.13",
     "uuid": "^3.1.0",
@@ -27,8 +25,13 @@
     "winston-papertrail": "^1.0.3"
   },
   "devDependencies": {
+    "fruster-test-utils": "^0.5.0",
+    "fruster-bus": "0.7.x",
     "@types/jasmine": "^2.8.5",
     "jasmine": "^2.4.1",
     "jasmine-spec-reporter": "^2.7.0"
+  },
+  "peerDependencies": {
+    "fruster-bus": "*"
   }
 }
