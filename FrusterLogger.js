@@ -76,12 +76,14 @@ class FrusterLogger extends winston.Logger {
     _publishOnBus(subject, data) {
         if (!bus) {
             // Lazy require fruster-bus to avoid hassle with circular dependencies
-            bus = require("fruster-bus");
+            try {
+                bus = require("fruster-bus");
+            } catch (err) { }
         }
 
         // fruster-bus should expose better flag or function to check if connect
         // but this will do for now
-        const isConnected = !!bus.request;
+        const isConnected = bus && !!bus.request;
 
         if (isConnected) {
             try {
@@ -170,4 +172,4 @@ class FrusterLogger extends winston.Logger {
 FrusterLogger.AUDIT_LOG_SUBJECT = "log";
 FrusterLogger.REMOTE_LOG_SUBJECT = "log";
 
-module.exports = FrusterLogger; 
+module.exports = FrusterLogger;

@@ -18,16 +18,16 @@
   },
   "license": "MIT",
   "dependencies": {
-    "moment": "^2.18.1",
-    "moment-timezone": "^0.5.13",
+    "moment": "^2.29.1",
+    "moment-timezone": "^0.5.33",
     "uuid": "^3.1.0",
     "winston": "^2.2.0",
-    "winston-papertrail": "^1.0.3"
+    "winston-papertrail": "^1.0.5"
   },
   "devDependencies": {
-    "fruster-test-utils": "^0.5.0",
-    "fruster-bus": "0.7.x",
     "@types/jasmine": "^2.8.5",
+    "fruster-bus": "0.7.x",
+    "fruster-test-utils": "^0.6.5",
     "jasmine": "^2.4.1",
     "jasmine-spec-reporter": "^2.7.0"
   },
